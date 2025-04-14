@@ -5,32 +5,21 @@
 
 extern print
 
-;;;;;;;;;;;;;;;;;;;;;;;;;
-; LEVELS
-extern level1
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; DATA
 
 section .data
-    msg db "Welcome to Nyx", 0xA
-    len equ $ - msg
+    welcome db "Welcome to Level1", 0xA
+    welcomelen equ $ - welcome
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; PROGRAM
+; LEVEL
 
 section .text
-    global _start
+    global level1
 
-_start:
-    mov rdi, msg
-    mov rsi, len
+level1:
+    mov rdi, welcome
+    mov rsi, welcomelen
     call print
-
-    call level1
-
-    ; exit(0)
-    mov rax, SYS_EXIT
-    xor rdi, rdi
-    syscall
-
+    ret
