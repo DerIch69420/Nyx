@@ -3,7 +3,7 @@ LD = ld
 ASFLAGS = -f elf64
 SRC_DIR = src
 OBJ_DIR = obj
-OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/constants.o $(OBJ_DIR)/io.o $(OBJ_DIR)/level/1.o
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/constants.o $(OBJ_DIR)/io.o $(OBJ_DIR)/location/spawn.o
 
 .PHONY: all clean
 
@@ -11,11 +11,11 @@ OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/constants.o $(OBJ_DIR)/io.o $(OBJ_DIR)/level
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/level:
-	mkdir -p $(OBJ_DIR)/level
+$(OBJ_DIR)/location:
+	mkdir -p $(OBJ_DIR)/location
 
 # Default target
-all: $(OBJ_DIR) $(OBJ_DIR)/level nyx
+all: $(OBJ_DIR) $(OBJ_DIR)/location nyx
 
 # Compile .asm to .o
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.asm

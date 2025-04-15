@@ -9,17 +9,19 @@ extern print
 ; DATA
 
 section .data
-    welcome db "Welcome to Level1", 0xA
-    welcomelen equ $ - welcome
+    header db "|----------> Spawn <----------|", 0xA
+    headerlen equ $ - header
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LEVEL
 
 section .text
-    global level1
+    global spawn
 
-level1:
-    mov rdi, welcome
-    mov rsi, welcomelen
+spawn:
+    mov rdi, header
+    mov rsi, headerlen
     call print
+
     ret
+

@@ -6,8 +6,8 @@
 extern print
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
-; LEVELS
-extern level1
+; LOCATIONS
+extern spawn
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; DATA
@@ -27,7 +27,7 @@ _start:
     mov rsi, len
     call print
 
-    call level1
+    call spawn
 
     ; exit(0)
     mov rax, SYS_EXIT
