@@ -3,26 +3,31 @@ LD = ld
 ASFLAGS = -f elf64
 SRC_DIR = src
 OBJ_DIR = obj
-OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/constants.o $(OBJ_DIR)/io.o
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/constants.o $(OBJ_DIR)/io.o $(OBJ_DIR)/location/spawn.o
 
-# Ensure that 'obj' directory is created
+.PHONY: all clean
+
+# Ensure obj and nested directories exist
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Default target
-all: $(OBJ_DIR) nyx
+$(OBJ_DIR)/location:
+	mkdir -p $(OBJ_DIR)/location
 
-# Compile .asm to .o with verbose output
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.asm | $(OBJ_DIR)
+# Default target
+all: $(OBJ_DIR) $(OBJ_DIR)/location nyx
+
+# Compile .asm to .o
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.asm
 	@echo "Compiling $< ..."
 	$(NASM) $(ASFLAGS) $< -o $@
 
-# Link the object files to create the executable
+# Link
 nyx: $(OBJS)
 	@echo "Linking object files ..."
 	$(LD) $(OBJS) -o nyx
 
-# Clean object files and executable
+# Clean
 clean:
 	@echo "Cleaning up ..."
 	rm -rf $(OBJ_DIR) nyx
