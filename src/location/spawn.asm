@@ -9,7 +9,7 @@ extern print
 ; DATA
 
 section .data
-    header db "|----------> Spawn <----------|", 0xA
+    header db "|--------------------> Spawn <--------------------|", 0xA
     headerlen equ $ - header
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
