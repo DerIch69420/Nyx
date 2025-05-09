@@ -3,7 +3,8 @@ LD = ld
 ASFLAGS = -f elf64
 SRC_DIR = src
 OBJ_DIR = obj
-OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/constants.o $(OBJ_DIR)/io.o $(OBJ_DIR)/location/spawn.o
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/constants.o $(OBJ_DIR)/io.o $(OBJ_DIR)/location/spawn.o $(OBJ_DIR)/location/forest.o
+
 
 .PHONY: all clean
 

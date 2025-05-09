@@ -6,95 +6,97 @@
 extern print
 extern input
 
+extern forest
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; BUFFER
 
 section .bss
-    input_buffer resb 1
+    user_input resb 1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; DATA
+; STRINGS
 
 section .data
     header db "|--------------------> Spawn <--------------------|", 0xA
     headerlen equ $ - header
 
-    text1 db "There are two paths.", 0xA
-          db "Which one will you take?", 0xA
-    text1len equ $ - text1
+    intro_text db "You stand at a mysterious crossroads.", 0xA
+               db "Which path will you take?", 0xA
+    intro_text_len equ $ - intro_text
 
-    path1 db "Path1: Into a dark forest", 0xA
-    path1len equ $ - path1
+    option_1 db "1. Enter the shadowy forest", 0xA
+    option_1_len equ $ - option_1
 
-    path2 db "Path2: A muddy pond", 0xA
-    path2len equ $ - path2
-    
-    chosen1 db "You chose Path1", 0xA
-    chosen1len equ $ - chosen1
+    option_2 db "2. Cross the swampy pond", 0xA
+    option_2_len equ $ - option_2
 
-    chosen2 db "You chose Path2", 0xA
-    chosen2len equ $ - chosen2
+    result_1 db "You walk cautiously into the forest, shadows dancing around you...", 0xA
+    result_1_len equ $ - result_1
 
-    invalid db "Invalid choice.", 0xA
-    invalidlen equ $ - invalid
+    result_2 db "You step into the pond, the water cold and murky...", 0xA
+    result_2_len equ $ - result_2
 
+    invalid_input db "Unrecognized choice. Please try again.", 0xA
+    invalid_input_len equ $ - invalid_input
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; LEVEL
+; FUNCTION
 
 section .text
     global spawn
 
 spawn:
-    ;; print start texts
+    ; print header
     mov rdi, header
     mov rsi, headerlen
     call print
 
-    mov rdi, text1
-    mov rsi, text1len
+    ; print introduction
+    mov rdi, intro_text
+    mov rsi, intro_text_len
     call print
 
-    mov rdi, path1
-    mov rsi, path1len
+    ; print options
+    mov rdi, option_1
+    mov rsi, option_1_len
     call print
 
-    mov rdi, path2
-    mov rsi, path2len
+    mov rdi, option_2
+    mov rsi, option_2_len
     call print
 
-
-    ; prompt for input
-    mov rdi, input_buffer
+    ; get input from player
+    mov rdi, user_input
     mov rsi, 64
     call input
 
-    ; check user input
-    mov al, [input_buffer]   ; load first character from input buffer
-
+    ; check input
+    mov al, [user_input]
     cmp al, '1'
-    je .chosen_path1
+    je .choose_forest
 
     cmp al, '2'
-    je .chosen_path2
+    je .choose_pond
 
-    ; if neither 1 nor 2, invalid input
-    mov rdi, invalid
-    mov rsi, invalidlen
+    ; Invalid input
+    mov rdi, invalid_input
+    mov rsi, invalid_input_len
     call print
     ret
 
-.chosen_path1:
-    mov rdi, chosen1
-    mov rsi, chosen1len
+.choose_forest:
+    mov rdi, result_1
+    mov rsi, result_1_len
     call print
+    
+    call forest
+
     ret
 
-.chosen_path2:
-    mov rdi, chosen2
-    mov rsi, chosen2len
+.choose_pond:
+    mov rdi, result_2
+    mov rsi, result_2_len
     call print
-    ret
-
     ret
 

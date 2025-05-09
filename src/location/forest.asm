@@ -9,16 +9,16 @@ extern print
 ; DATA
 
 section .data
-    header db "|--------------------> location <--------------------|", 0xA
+    header db "|--------------------> Forest <--------------------|", 0xA
     headerlen equ $ - header
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LEVEL
 
 section .text
-    global location
+    global forest
 
-location:
+forest:
     mov rdi, header
     mov rsi, headerlen
     call print
