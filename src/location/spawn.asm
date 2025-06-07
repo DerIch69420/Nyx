@@ -6,7 +6,10 @@
 extern print
 extern input
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+; LOCATIONS
 extern forest
+extern pond
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; BUFFER
@@ -98,5 +101,8 @@ spawn:
     mov rdi, result_2
     mov rsi, result_2_len
     call print
+
+    call pond
+
     ret
 
