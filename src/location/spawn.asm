@@ -2,6 +2,7 @@
 ; INCLUDES
 
 %include "src/constants.asm"
+%include "src/macros.asm"
 
 extern print
 extern input
@@ -95,7 +96,9 @@ spawn:
     mov rdi, result_1
     mov rsi, result_1_len
     call print
-    
+
+    sleep 3
+
     call forest
 
     ret
@@ -104,6 +107,8 @@ spawn:
     mov rdi, result_2
     mov rsi, result_2_len
     call print
+
+    sleep 3
 
     call pond
 
