@@ -2,6 +2,7 @@
 ; INCLUDES
 
 %include "src/constants.asm"
+%include "src/macros.asm"
 
 extern print
 
@@ -19,6 +20,9 @@ section .text
     global forest
 
 forest:
+
+    clear_screen
+
     mov rdi, header
     mov rsi, headerlen
     call print

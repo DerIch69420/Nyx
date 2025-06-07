@@ -50,6 +50,9 @@ section .text
     global spawn
 
 spawn:
+
+    clear_screen
+
     ; print header
     mov rdi, header
     mov rsi, headerlen
