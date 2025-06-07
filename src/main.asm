@@ -2,6 +2,7 @@
 ; INCLUDES
 
 %include "src/constants.asm"
+%include "src/macros.asm"
 
 extern print
 
@@ -35,8 +36,5 @@ _start:
 
     call spawn
 
-    ; exit(0)
-    mov rax, SYS_EXIT
-    xor rdi, rdi
-    syscall
+    exit
 
