@@ -2,6 +2,7 @@
 ; INCLUDES
 
 %include "src/constants.asm"
+%include "src/macros.asm"
 
 extern print
 
@@ -9,16 +10,19 @@ extern print
 ; DATA
 
 section .data
-    header db "|--------------------> location <--------------------|", 0xA
+    header db "|--------------------> Pond <--------------------|", 0xA
     headerlen equ $ - header
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LEVEL
 
 section .text
-    global location
+    global pond
 
-location:
+pond:
+    
+    clear_screen
+
     mov rdi, header
     mov rsi, headerlen
     call print
