@@ -1,2 +1,8 @@
 # obsidian
-.obsidian/
+/.obsidian/
+
+# nyx
+/nyx
+
+# object files
+/obj
