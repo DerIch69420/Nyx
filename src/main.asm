@@ -2,7 +2,7 @@
 ; INCLUDES
 
 %include "src/constants.asm"
-%include "src/macros.asm"
+%include "src/utils.asm"
 
 extern print
 
@@ -33,6 +33,8 @@ _start:
     mov rdi, header
     mov rsi, headerlen
     call print
+
+    sleep 3
 
     call spawn
 

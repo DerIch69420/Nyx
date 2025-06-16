@@ -2,7 +2,7 @@
 ; INCLUDES
 
 %include "src/constants.asm"
-%include "src/macros.asm"
+%include "src/utils.asm"
 
 extern print
 extern input
