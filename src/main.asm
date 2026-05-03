@@ -30,6 +30,8 @@ section .text
     global _start
 
 _start:
+    clear_screen
+
     mov rdi, header
     mov rsi, headerlen
     call print
