@@ -31,6 +31,7 @@ section .text
 
 _start:
     clear_screen
+    hide_cursor
 
     mov rdi, header
     mov rsi, headerlen
@@ -39,6 +40,8 @@ _start:
     sleep 3
 
     call spawn
+
+    show_cursor
 
     exit
 

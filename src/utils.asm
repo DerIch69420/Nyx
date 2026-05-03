@@ -2,6 +2,12 @@ section .data
     clear   db 27, "[2J", 27, "[H" ; string to clear terminal screen
     clearlen equ $ - clear
 
+    hide_cursor db 27, "[?25l"   ; ANSI: hide cursor
+    hide_cursor_len equ $ - hide_cursor
+
+    show_cursor db 27, "[?25h"   ; ANSI: show cursor
+    show_cursor_len equ $ - show_cursor
+
 %macro sleep 1
     ; sleeps for %1 seconds (tv_sec = %1, tv_nsec = 0)
     sub rsp, 16
@@ -19,6 +25,18 @@ section .data
 %macro clear_screen 0
     mov rdi, clear ; file descriptor: stdout
     mov rsi, clearlen ; pointer to ANSI string
+    call print
+%endmacro
+
+%macro hide_cursor 0
+    mov rdi, hide_cursor ; file descriptor: stdout
+    mov rsi, hide_cursor_len ; pointer to ANSI string
+    call print
+%endmacro
+
+%macro show_cursor 0
+    mov rdi, show_cursor ; file descriptor: stdout
+    mov rsi, show_cursor_len ; pointer to ANSI string
     call print
 %endmacro
 
