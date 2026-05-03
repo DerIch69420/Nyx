@@ -10,17 +10,17 @@ extern print
 ; DATA
 
 section .data
-    header db "|--------------------> Pond <--------------------|", 0xA
+    header db "|--------------------> Clearing <--------------------|", 0xA
     headerlen equ $ - header
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LEVEL
 
 section .text
-    global pond
+    global clearing
 
-pond:
-    
+clearing:
+
     clear_screen
 
     mov rdi, header
@@ -28,4 +28,3 @@ pond:
     call print
 
     ret
-

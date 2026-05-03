@@ -31,10 +31,10 @@ input:
     ; rsi = maximum number of bytes to read
     ; returns: rax = number of bytes read
 
-    mov rax, SYS_READ  ; syscall number for read
-    mov rdx, rsi        ; number of bytes to read
-    mov rsi, rdi        ; pointer to buffer
-    mov rdi, STDIN      ; file descriptor (STDIN = 0)
+    mov rax, SYS_READ ; syscall number for read
+    mov rdx, rsi ; number of bytes to read
+    mov rsi, rdi ; pointer to buffer
+    mov rdi, STDIN ; file descriptor (STDIN = 0)
     syscall
     ret
     
